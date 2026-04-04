@@ -64,6 +64,13 @@ class UC (models.Model):
     projeto_final = models.OneToOneField(Projeto, null=True, on_delete=models.SET_NULL)
     resumo = models.CharField(max_length=100)
 
+class Licenciatura (models.Model):
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    ucs = models.ManyToManyField(UC, null=False,blank=False)
+    objetivos = models.CharField(max_length=500)
+    docentes = models.ManyToManyField(Docente, null=False, blank=False)
+    tecnologias = models.ManyToManyField(Tecnologia, null=False, blank=False)
+
     
 
 
