@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Docente, Competencias, Empresa
+from .models import Docente, Competencia, Empresa, Formacao
 
 admin.site.register(Docente)
-admin.site.register(Competencias)
+admin.site.register(Competencia)
 admin.site.register(Empresa)
+admin.site.register(Formacao)
 
 class DocenteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'link_clicavel')
