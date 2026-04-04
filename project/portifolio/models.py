@@ -39,9 +39,14 @@ class TFC (models.Model):
     resumo = models.CharField(max_length=500, null=False, blank=False)
     video_imagem = models.URLField()
     interesse = models.DecimalField(max_digits=2, decimal_places=1, null= False, blank=False)
-    
 
 
+class Tecnologia (models.Model):
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    descricao =  models.CharField(max_length=200, null = True)
+    exemplos_uso =  models.CharField(max_length=200, null=True)
+    docente = models.ManyToManyField(Docente, null=False, blank=False)
+    logo = models.ImageField(upload_to='logos/', null=True)
     
 
 
