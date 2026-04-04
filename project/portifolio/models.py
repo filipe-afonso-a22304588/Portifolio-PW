@@ -47,6 +47,23 @@ class Tecnologia (models.Model):
     exemplos_uso =  models.CharField(max_length=200, null=True)
     docente = models.ManyToManyField(Docente, null=False, blank=False)
     logo = models.ImageField(upload_to='logos/', null=True)
+
+class Projeto (models.Model):
+    titulo = models.CharField(max_length=100, null=False, blank=False)
+    docentes = models.ManyToManyField(Docente, null=False, blank=False)
+    nota_final = models.DecimalField(max_digits=2, decimal_places=1, null= False, blank=False)
+    tecnologias_usadas = models.ManyToManyField(Tecnologia, null=False,blank=False)
+    descricao = models.CharField(max_length=200)
+    exemplo = models.ImageField(upload_to='projetos/', null=True)
+    link_deisi = models.URLField(null=True)
+
+class UC (models.Model):
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    docentes = models.ManyToManyField(Docente, null=False,blank=False)
+    tecnologias_aprendidas = models.ManyToManyField(Tecnologia, null=False,blank=False)
+    projeto_final = models.OneToOneField(Projeto, null=True, on_delete=models.SET_NULL)
+    resumo = models.CharField(max_length=100)
+
     
 
 
