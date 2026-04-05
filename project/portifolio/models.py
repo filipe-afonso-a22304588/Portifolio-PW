@@ -2,7 +2,7 @@ from django.db import models
 
 class Docente (models.Model):
     nome = models.CharField(max_length=200, null=False, blank=False)
-    linkedin = models.URLField(blank=True)
+    link = models.URLField(blank=True, null = True)
     
     def __str__(self):
         return self.nome
@@ -18,7 +18,7 @@ class Empresa (models.Model):
     nome = models.CharField(max_length=100, null = False, blank=False)
     data_comeco = models.DateField(null=False,blank=False)
     data_saida = models.DateField(null=True, blank=True)
-    competencias = models.ManyToManyField(Competencia)
+    competencias = models.ManyToManyField(Competencia, null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -34,7 +34,7 @@ class Formacao (models.Model):
 class TFC (models.Model):
     titulo = models.CharField(max_length=100, null=False, blank=False)
     autor = models.CharField(max_length=100, null=False, blank=False)
-    docente_responsavel = models.ManyToManyField(Docente, null=False, blank= False)
+    docente_responsavel = models.ManyToManyField(Docente, blank= False)
     tecnologias_usadas = models.CharField(max_length=100, null=False, blank=False)
     resumo = models.CharField(max_length=500, null=False, blank=False)
     video_imagem = models.URLField(blank=True)
@@ -47,7 +47,7 @@ class Tecnologia (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
     descricao =  models.CharField(max_length=200, null = True)
     exemplos_uso =  models.CharField(max_length=200, null=True)
-    docente = models.ManyToManyField(Docente, null=False, blank=False)
+    docente = models.ManyToManyField(Docente, blank=False)
     logo = models.ImageField(upload_to='logos/', null=True,  blank=True)
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Projeto (models.Model):
     tecnologias_usadas = models.ManyToManyField(Tecnologia, null=False,blank=False)
     descricao = models.CharField(max_length=200)
     exemplo = models.ImageField(upload_to='projetos/', null=True, blank=True)
-    link_deisi = models.URLField(null=True,  blank=True)
+    link_deisi = models.URLField(blank=True)
 
     def __str__(self):
         return self.titulo
