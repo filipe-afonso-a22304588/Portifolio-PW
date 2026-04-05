@@ -85,6 +85,14 @@ class Licenciatura (models.Model):
     def __str__(self):
         return self.nome
 
+class MakingOF (models.Model):
+    titulo = models.CharField(max_length=100, null=False, blank=False)
+    resumo = models.CharField(max_length=100, blank=True)
+    arquivo = models.FileField(upload_to='documentos/', blank = True)
+    imagem = models.ImageField(upload_to='makingOF/',  blank=True)
+
+    def __str__(self):
+        return self.titulo
     
 
 
