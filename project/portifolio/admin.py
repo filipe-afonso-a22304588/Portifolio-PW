@@ -42,7 +42,7 @@ class TFCAdmin(admin.ModelAdmin):
 
 class TecnologiaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'mostrar_logo', 'listar_docente')
-    search_fields = ('nome','listar_docente')
+    search_fields = ('nome','docente__nome')
 
     def mostrar_logo(self, obj):
         if obj.logo:
@@ -58,7 +58,7 @@ class TecnologiaAdmin(admin.ModelAdmin):
 
 class ProjetoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'listar_docente', 'nota_final', 'link_clicavel')
-    search_fields = ('nome','listar_docente')
+    search_fields = ('titulo', 'docentes__nome')
 
     def listar_docente(self, obj):
         return ", ".join([docente.nome for docente in obj.docentes.all()])
