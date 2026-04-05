@@ -60,7 +60,7 @@ class Projeto (models.Model):
     tecnologias_usadas = models.ManyToManyField(Tecnologia, null=False,blank=False)
     descricao = models.CharField(max_length=200)
     exemplo = models.ImageField(upload_to='projetos/', null=True, blank=True)
-    link_deisi = models.URLField(blank=True)
+    link_deisi = models.URLField(null=True ,blank=True)
 
     def __str__(self):
         return self.titulo
