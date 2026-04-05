@@ -66,9 +66,10 @@ class ProjetoAdmin(admin.ModelAdmin):
     listar_docente.short_description = "Docentes"
 
     def link_clicavel(self, obj):
-        if obj.link_deisi is None:
+        if not obj.link_deisi:
             return "-"
-        return format_html('<a href="{}" target="_blank">Abrir</a>', obj.link_deisi)
+        else:
+            return format_html('<a href="{}" target="_blank">Abrir</a>', obj.link_deisi)
     
     link_clicavel.short_description = "Link DEISI"
 
@@ -96,7 +97,8 @@ class LicenciaturaAdmin(admin.ModelAdmin):
     listar_docente.short_description = "Docentes"
 
     def listar_ucs(self, obj):
-        if obj.ucs is None:
+        ucs = obj.ucs.all()
+        if not ucs:
             return '-'
         else:
             return ", ".join([uc.nome for uc in obj.ucs.all()])
@@ -109,7 +111,7 @@ class MakingOFAdmin(admin.ModelAdmin):
 
     def mostrar_arquivo(self, obj):
         if obj.arquivo:
-            return format_html('<a href="{}" target="_blank">Abrir arquivo Word</a>', obj.arquivo)
+            return format_html('<a href="{}" target="_blank">Abrir arquivo Word</a>', obj.arquivo.url)
         else:
             return "-"
 
