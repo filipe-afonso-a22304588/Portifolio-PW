@@ -7,36 +7,45 @@ class Command(BaseCommand):
     help = 'Importar TFCs do JSON'
 
     def handle(self, *args, **kwargs):
+        TFC.objects.all().delete()
         with open('media/TFCS json/tfcs.json', encoding='utf-8') as tfc:
             dados = json.load(tfc)
 
-        for tfc in dados:
+        for item in dados:
+            try:
 
-            orientadores = tfc.get('orientador', '')
-            lista_orientadores = [orientador.strip() for orientador in orientadores.split(',')]
-            docentes_objs = []
+                orientadores = item.get('orientador') or ''
+                lista_orientadores = [orientador.strip() for orientador in orientadores.split(',')]
+                docentes_objs = []
 
-            for nome_docente in lista_orientadores:
-                docente, created = Docente.objects.get_or_create(nome=nome_docente)
-                docentes_objs.append(docente)
+                for nome_docente in lista_orientadores:
+                    docente, created = Docente.objects.get_or_create(nome=nome_docente)
+                    docentes_objs.append(docente)
 
-            tecnologias = tfc.get('tecnologias', '')
-            lista_tecnologias = [tecnologia.strip() for tecnologia in tecnologias.split(';')]
-            tecnologias_objs = []
+                tecnologias = item.get('tecnologias') or ''
+                lista_tecnologias = [tecnologia.strip() for tecnologia in tecnologias.split(';')]
+                tecnologias_objs = []
 
-            for nome_tecnologia in lista_tecnologias:
-                tecnologia, created = Tecnologia.objects.get_or_create(nome=nome_tecnologia)
-                tecnologias_objs.append(tecnologia)
+                for nome_tecnologia in lista_tecnologias:
+                    tecnologia, created = Tecnologia.objects.get_or_create(nome=nome_tecnologia)
+                    tecnologias_objs.append(tecnologia)
 
-            tfc_formatado = TFC.objects.create(
-                titulo=tfc['titulo'],
-                autor=tfc['autor'],
-                resumo=tfc['resumo'],
-                tecnologias_usadas=tfc['tecnologias'],
-                interesse=5.0  # ou outro valor default
-            )
+                if item['tecnologias'] is None:
+                    tecnologias_usadas_tfc = "-"
+                else:
+                    tecnologias_usadas_tfc=item['tecnologias'],
 
-            tfc_formatado.docente_responsavel.set(docentes_objs)
 
-        self.stdout.write(self.style.SUCCESS('Importação concluída!'))
+                tfc_formatado = TFC.objects.create(
+                    titulo=item['titulo'],
+                    autor=item['autor'],
+                    resumo=item['resumo'],
+                    tecnologias_usadas=tecnologias_usadas_tfc,
+                    interesse=5.0  # ou outro valor default
+                )
+
+                tfc_formatado.docente_responsavel.set(docentes_objs)
+
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f"Erro no TFC: {item.get('titulo')} -> {e}"))
 #
