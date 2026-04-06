@@ -7,7 +7,7 @@ class DocenteAdmin(admin.ModelAdmin):
     search_fields = ('nome',)
     
     def link_clicavel(self, obj):
-        if not obj.link.strip():
+        if not obj.link or not obj.link.strip():
             return "Não associado"
         return format_html('<a href="{}" target="_blank">Abrir</a>', obj.link)
     

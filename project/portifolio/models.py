@@ -18,7 +18,7 @@ class Empresa (models.Model):
     nome = models.CharField(max_length=100, null = False, blank=False)
     data_comeco = models.DateField(null=False,blank=False)
     data_saida = models.DateField(null=True, blank=True)
-    competencias = models.ManyToManyField(Competencia, null=True, blank=True)
+    competencias = models.ManyToManyField(Competencia, blank=True)
 
     def __str__(self):
         return self.nome
@@ -36,7 +36,7 @@ class TFC (models.Model):
     autor = models.CharField(max_length=100, null=False, blank=False)
     docente_responsavel = models.ManyToManyField(Docente, blank= False)
     tecnologias_usadas = models.CharField(max_length=100, null=False, blank=False)
-    resumo = models.CharField(max_length=500, null=False, blank=False)
+    resumo = models.CharField(max_length=500, blank=True)
     video_imagem = models.URLField(blank=True)
     interesse = models.DecimalField(max_digits=2, decimal_places=1, null= False, blank=False)
 
@@ -47,7 +47,7 @@ class Tecnologia (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
     descricao =  models.CharField(max_length=200, null = True)
     exemplos_uso =  models.CharField(max_length=200, null=True)
-    docente = models.ManyToManyField(Docente, blank=False)
+    docente = models.ManyToManyField(Docente, blank=True)
     logo = models.ImageField(upload_to='logos/', null=True,  blank=True)
 
     def __str__(self):
@@ -77,7 +77,7 @@ class UC (models.Model):
 
 class Licenciatura (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
-    ucs = models.ManyToManyField(UC, null=False,blank=False)
+    ucs = models.ManyToManyField(UC, null=False,blank=True)
     objetivos = models.CharField(max_length=500, blank=True)
     docentes = models.ManyToManyField(Docente, null=False, blank=False)
     tecnologias = models.ManyToManyField(Tecnologia, null=False, blank=False)
