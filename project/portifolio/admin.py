@@ -82,22 +82,8 @@ class UcAdmin(admin.ModelAdmin):
     titulo_projeto.short_description = "Projeto Final"
 
 class LicenciaturaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'listar_ucs', 'listar_docente')
+    list_display = ('nome', 'diretor_curso')
     search_fields = ('nome',)
-
-    def listar_docente(self, obj):
-        return ", ".join([docente.nome for docente in obj.docentes.all()])
-
-    listar_docente.short_description = "Docentes"
-
-    def listar_ucs(self, obj):
-        ucs = obj.ucs.all()
-        if not ucs:
-            return '-'
-        else:
-            return ", ".join([uc.nome for uc in obj.ucs.all()])
-    
-    listar_ucs.short_description = "UCs"
 
 class MakingOFAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'mostrar_arquivo', 'resumo')

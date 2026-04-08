@@ -83,7 +83,19 @@ class Licenciatura (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
     ucs = models.ManyToManyField(UC, blank=True)
     objetivos = models.CharField(max_length=500, blank=True)
-    docentes = models.ManyToManyField(Docente, blank=False)
+    docentes = models.ManyToManyField(
+        Docente,
+        blank=True,
+        related_name='licenciaturas'
+    )
+
+    diretor_curso = models.OneToOneField(
+        Docente,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='diretor_de_curso'
+    )
 
     def __str__(self):
         return self.nome
