@@ -3,7 +3,8 @@ from django.db import models
 class Docente (models.Model):
     nome = models.CharField(max_length=200, null=False, blank=False)
     link = models.URLField(blank=True, null = True)
-    
+    email = models.EmailField(blank=True)
+
     def __str__(self):
         return self.nome
 
@@ -34,7 +35,7 @@ class Formacao (models.Model):
 class TFC (models.Model):
     titulo = models.CharField(max_length=100, null=False, blank=False)
     autor = models.CharField(max_length=100, null=False, blank=False)
-    docente_responsavel = models.ManyToManyField(Docente, blank= False)
+    docente_responsavel = models.CharField(blank= True)
     tecnologias_usadas = models.CharField(max_length=100, null=False, blank=False)
     resumo = models.CharField(max_length=500, blank=True)
     video_imagem = models.URLField(blank=True)
@@ -55,9 +56,9 @@ class Tecnologia (models.Model):
 
 class Projeto (models.Model):
     titulo = models.CharField(max_length=100, null=False, blank=False)
-    docentes = models.ManyToManyField(Docente, null=False, blank=False)
+    docentes = models.ManyToManyField(Docente, blank=False)
     nota_final = models.DecimalField(max_digits=3, decimal_places=1, null= False, blank=False)
-    tecnologias_usadas = models.ManyToManyField(Tecnologia, null=False,blank=False)
+    tecnologias_usadas = models.ManyToManyField(Tecnologia, blank=False)
     descricao = models.CharField(max_length=200)
     exemplo = models.ImageField(upload_to='projetos/', null=True, blank=True)
     link_deisi = models.URLField(null=True ,blank=True)
@@ -67,8 +68,8 @@ class Projeto (models.Model):
 
 class UC (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
-    docentes = models.ManyToManyField(Docente, null=False,blank=False)
-    tecnologias_aprendidas = models.ManyToManyField(Tecnologia, null=False,blank=False)
+    docentes = models.ManyToManyField(Docente, blank=False)
+    tecnologias_aprendidas = models.ManyToManyField(Tecnologia, blank=False)
     projeto_final = models.OneToOneField(Projeto, null=True, on_delete=models.SET_NULL, blank=True)
     resumo = models.CharField(max_length=100)
 
@@ -77,10 +78,10 @@ class UC (models.Model):
 
 class Licenciatura (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
-    ucs = models.ManyToManyField(UC, null=False,blank=True)
+    ucs = models.ManyToManyField(UC, blank=True)
     objetivos = models.CharField(max_length=500, blank=True)
-    docentes = models.ManyToManyField(Docente, null=False, blank=False)
-    tecnologias = models.ManyToManyField(Tecnologia, null=False, blank=False)
+    docentes = models.ManyToManyField(Docente, blank=False)
+    tecnologias = models.ManyToManyField(Tecnologia, blank=False)
 
     def __str__(self):
         return self.nome

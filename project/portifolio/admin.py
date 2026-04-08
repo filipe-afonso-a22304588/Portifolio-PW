@@ -3,8 +3,8 @@ from django.utils.html import format_html
 from .models import Docente, Competencia, Empresa, Formacao, TFC, Tecnologia, Projeto,UC, Licenciatura, MakingOF
 
 class DocenteAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'link_clicavel')
-    search_fields = ('nome',)
+    list_display = ('nome', 'email', 'link_clicavel')
+    search_fields = ('nome', 'email',)
     
     def link_clicavel(self, obj):
         if not obj.link or not obj.link.strip():
@@ -31,14 +31,8 @@ class FormacaoAdmin(admin.ModelAdmin):
     search_fields = ('titulo',)
 
 class TFCAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'autor', 'listar_docente', 'interesse')
+    list_display = ('titulo', 'autor', 'interesse')
     search_fields = ('titulo', 'autor',)
-
-    
-    def listar_docente(self, obj):
-        return ", ".join([docente.nome for docente in obj.docente_responsavel.all()])
-   
-    listar_docente.short_description = "Docentes"
 
 class TecnologiaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'mostrar_logo', 'listar_docente')

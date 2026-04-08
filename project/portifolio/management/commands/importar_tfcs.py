@@ -8,19 +8,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         TFC.objects.all().delete()
-        with open('media/TFCS json/tfcs.json', encoding='utf-8') as tfc:
+        with open('media/jsons/tfcs.json', encoding='utf-8') as tfc:
             dados = json.load(tfc)
 
         for item in dados:
             try:
-
-                orientadores = item.get('orientador') or ''
-                lista_orientadores = [orientador.strip() for orientador in orientadores.split(',')]
-                docentes_objs = []
-
-                for nome_docente in lista_orientadores:
-                    docente, created = Docente.objects.get_or_create(nome=nome_docente)
-                    docentes_objs.append(docente)
 
                 tecnologias = item.get('tecnologias') or ''
                 lista_tecnologias = [tecnologia.strip() for tecnologia in tecnologias.split(';')]
@@ -41,10 +33,9 @@ class Command(BaseCommand):
                     autor=item['autor'],
                     resumo=item['resumo'],
                     tecnologias_usadas=tecnologias_usadas_tfc,
+                    docente_responsavel=item['orientador'],
                     interesse=5.0  # ou outro valor default
                 )
-
-                tfc_formatado.docente_responsavel.set(docentes_objs)
 
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f"Erro no TFC: {item.get('titulo')} -> {e}"))
