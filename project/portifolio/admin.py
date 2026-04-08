@@ -68,7 +68,7 @@ class ProjetoAdmin(admin.ModelAdmin):
     link_clicavel.short_description = "Link DEISI"
 
 class UcAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'titulo_projeto', 'listar_docente')
+    list_display = ('nome', 'titulo_projeto', 'listar_docente', 'ect', 'ano_curricular', 'semestre')
     search_fields = ('nome',)
 
     def listar_docente(self, obj):

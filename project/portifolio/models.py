@@ -67,11 +67,14 @@ class Projeto (models.Model):
         return self.titulo
 
 class UC (models.Model):
-    nome = models.CharField(max_length=100, null=False, blank=False)
+    nome = models.CharField(max_length=500, null=False, blank=False)
     docentes = models.ManyToManyField(Docente, blank=False)
     tecnologias_aprendidas = models.ManyToManyField(Tecnologia, blank=True)
     projeto_final = models.OneToOneField(Projeto, null=True, on_delete=models.SET_NULL, blank=True)
     resumo = models.CharField(max_length=100)
+    ect = models.IntegerField(blank=False, null=True)
+    ano_curricular = models.IntegerField(blank=False, null=True)
+    semestre = models.IntegerField(blank=False, null= True)
 
     def __str__(self):
         return self.nome

@@ -2,35 +2,41 @@ import json
 import os
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from portifolio.models import Docente
-
+from portifolio.models import UC
 
 class Command(BaseCommand):
-    help = 'Importar docentes do JSON'
+    help = 'Importar UCs dos JSONs'
 
     def handle(self, *args, **kwargs):
 
-        caminho = os.path.join(
-            settings.MEDIA_ROOT,
-            'jsons',
-            'Cursos',
-            'ULHT260-PT.json'
-        )
+        pasta_ucs = os.path.join(settings.MEDIA_ROOT, 'jsons', 'UCs')
 
-        with open(caminho, encoding='utf-8') as f:
-            data = json.load(f)
+        for ficheiro in os.listdir(pasta_ucs):
 
-        # ⚠️ ajusta isto conforme o JSON real
-        docentes_json = data.get('teachers', [])
+            if not ficheiro.endswith('.json'):
+                continue
 
-        for docente in docentes_json:
-            nome = docente.get('academicName') or docente.get('fullName')
-            email = docente.get('email', None)
+            caminho = os.path.join(pasta_ucs, ficheiro)
 
-            obj, created = Docente.objects.get_or_create(nome=nome)
+            with open(caminho, encoding='utf-8') as f:
+                data = json.load(f)
 
-            if email:
-                obj.email = email
-                obj.save()
+            nome = data.get('curricularUnitName')
+            resumo = (data.get('presentation') or '')[:100]  # ⚠️ corta para caber no CharField
+            ect = data.get('ects')
+            ano = data.get('curricularYear')
 
-        self.stdout.write(self.style.SUCCESS('Docentes importados!'))
+            #Semestre não vem direto
+            semestre = 1 if "1" in ficheiro else 2
+
+            uc, created = UC.objects.get_or_create(
+                nome=nome,
+                defaults={
+                    'resumo': resumo,
+                    'ect': ect,
+                    'ano_curricular': ano,
+                    'semestre': semestre
+                }
+            )
+
+        self.stdout.write(self.style.SUCCESS('UCs importadas!'))
