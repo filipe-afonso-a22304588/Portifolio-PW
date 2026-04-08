@@ -69,7 +69,7 @@ class Projeto (models.Model):
 class UC (models.Model):
     nome = models.CharField(max_length=100, null=False, blank=False)
     docentes = models.ManyToManyField(Docente, blank=False)
-    tecnologias_aprendidas = models.ManyToManyField(Tecnologia, blank=False)
+    tecnologias_aprendidas = models.ManyToManyField(Tecnologia, blank=True)
     projeto_final = models.OneToOneField(Projeto, null=True, on_delete=models.SET_NULL, blank=True)
     resumo = models.CharField(max_length=100)
 
@@ -81,7 +81,6 @@ class Licenciatura (models.Model):
     ucs = models.ManyToManyField(UC, blank=True)
     objetivos = models.CharField(max_length=500, blank=True)
     docentes = models.ManyToManyField(Docente, blank=False)
-    tecnologias = models.ManyToManyField(Tecnologia, blank=False)
 
     def __str__(self):
         return self.nome
