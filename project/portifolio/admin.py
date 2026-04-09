@@ -4,6 +4,7 @@ from .models import Docente, Competencia, Empresa, Formacao, TFC, Tecnologia, Pr
 
 class DocenteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'link_clicavel')
+    ordering = ('nome',)
     search_fields = ('nome', 'email',)
     
     def link_clicavel(self, obj):
@@ -32,10 +33,12 @@ class FormacaoAdmin(admin.ModelAdmin):
 
 class TFCAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'autor', 'interesse')
+    ordering = ('titulo',)
     search_fields = ('titulo', 'autor',)
 
 class TecnologiaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'mostrar_logo', 'listar_docente')
+    ordering = ('nome',)
     search_fields = ('nome','docente__nome')
 
     def mostrar_logo(self, obj):
@@ -52,6 +55,7 @@ class TecnologiaAdmin(admin.ModelAdmin):
 
 class ProjetoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'listar_docente', 'nota_final', 'link_clicavel')
+    ordering = ('titulo',)
     search_fields = ('titulo', 'docentes__nome')
 
     def listar_docente(self, obj):
@@ -69,6 +73,7 @@ class ProjetoAdmin(admin.ModelAdmin):
 
 class UcAdmin(admin.ModelAdmin):
     list_display = ('nome', 'titulo_projeto', 'listar_docente', 'ect', 'ano_curricular', 'semestre')
+    ordering = ('nome',)
     search_fields = ('nome',)
 
     def listar_docente(self, obj):
@@ -83,6 +88,7 @@ class UcAdmin(admin.ModelAdmin):
 
 class LicenciaturaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'diretor_curso')
+    ordering = ('nome',)
     search_fields = ('nome',)
 
 class MakingOFAdmin(admin.ModelAdmin):

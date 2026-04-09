@@ -5,12 +5,18 @@ class Docente (models.Model):
     link = models.URLField(blank=True, null = True)
     email = models.EmailField(blank=True)
 
+    class Meta:
+        ordering = ['nome']
+
     def __str__(self):
         return self.nome
 
 class Competencia (models.Model):
     titulo = models.CharField(max_length=50,null=False,blank=False)
     resumo_basico = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ['titulo']
 
     def __str__(self):
         return self.titulo
@@ -29,6 +35,9 @@ class Formacao (models.Model):
     data = models.DateField(null=False, blank=False)
     resumo = models.CharField(max_length=200, blank=True)
 
+    class Meta:
+        ordering = ['titulo']
+
     def __str__(self):
         return self.titulo
     
@@ -40,6 +49,9 @@ class TFC (models.Model):
     resumo = models.CharField(max_length=500, blank=True)
     video_imagem = models.URLField(blank=True)
     interesse = models.DecimalField(max_digits=2, decimal_places=1, null= False, blank=False)
+    
+    class Meta:
+        ordering = ['titulo']
 
     def __str__(self):
         return self.titulo
@@ -50,6 +62,9 @@ class Tecnologia (models.Model):
     exemplos_uso =  models.CharField(max_length=200, null=True)
     docente = models.ManyToManyField(Docente, blank=True)
     logo = models.ImageField(upload_to='logos/', null=True,  blank=True)
+
+    class Meta:
+        ordering = ['nome']
 
     def __str__(self):
         return self.nome
@@ -63,6 +78,9 @@ class Projeto (models.Model):
     exemplo = models.ImageField(upload_to='projetos/', null=True, blank=True)
     link_deisi = models.URLField(null=True ,blank=True)
 
+    class Meta:
+        ordering = ['titulo']
+
     def __str__(self):
         return self.titulo
 
@@ -75,6 +93,9 @@ class UC (models.Model):
     ect = models.IntegerField(blank=False, null=True)
     ano_curricular = models.IntegerField(blank=False, null=True)
     semestre = models.IntegerField(blank=False, null= True)
+
+    class Meta:
+        ordering = ['nome']
 
     def __str__(self):
         return self.nome
@@ -96,6 +117,9 @@ class Licenciatura (models.Model):
         on_delete=models.SET_NULL,
         related_name='diretor_de_curso'
     )
+
+    class Meta:
+        ordering = ['nome']
 
     def __str__(self):
         return self.nome
