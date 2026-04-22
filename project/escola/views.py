@@ -7,10 +7,20 @@ def cursos_view(request):
 
     cursos = Curso.objects.select_related('professor').prefetch_related('alunos').all()
     
-    return render(request, 'escola/curso.html', {'cursos': cursos})
+    return render(request, 'escola/cursos.html', {'cursos': cursos})
 
 def professores_view(request):
 
     professores = Professor.objects.all()
     
     return render(request, 'escola/professor.html', {'professores': professores})
+
+def alunos_view(request):
+
+    alunos = Aluno.objects.all()
+    
+    return render(request, 'escola/aluno.html', {'alunos': alunos})
+
+def curso_view(request, id):
+    curso=Curso.objects.get(id=id)       
+    return render(request, 'escola/curso.html', {'curso': curso})
