@@ -1,0 +1,43 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>{{docente}}</h2>
+<section>
+    <article>
+
+        <section>
+            <h4>Unidades curriculares:</h4>
+            {% for uc in docente.ucs.all %}
+            <ul>
+                <li>
+                <a href="{% url 'uc' uc.id %}">
+                    {{uc}}
+                </a>
+                </li>
+            </ul>
+            {% empty %}
+            <a>Sem UCs atribuidos</a>
+            {%endfor%}
+        </section>
+
+        <section>
+            <h4>Linkedin:</h4>
+            <ul>
+                <a>{{docente.link}}</a>
+            </ul>
+        </section>
+
+        <section>
+            <h4>email:</h4>
+            <ul>
+                {% if docente.email %}
+                <a>{{docente.emal}}</a>
+                {% else %}
+                <a>Sem email atribuido</a>
+                {% endif %}
+            </ul>
+        </section>
+
+    </article>
+</section>
+{% endblock %}

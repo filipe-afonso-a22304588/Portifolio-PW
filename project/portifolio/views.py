@@ -9,6 +9,10 @@ def ucs_view(request):
     
     return render(request, 'portifolio/ucs.html', {'ucs': ucs})
 
+def uc_view(request, id):
+    uc = UC.objects.get(id=id)
+    return render(request, 'portifolio/uc.html', {'uc': uc})
+
 
 def projetos_view(request):
 
@@ -19,3 +23,16 @@ def projetos_view(request):
 def projeto_view(request, id):
     projeto=Projeto.objects.get(id=id)       
     return render(request, 'portifolio/projeto.html', {'projeto': projeto})
+
+def licenciaturas_view(request):
+
+    licenciaturas = Licenciatura.objects.all()
+    return render(request, 'portifolio/licenciaturas.html', {'licenciaturas': licenciaturas})
+
+def licenciatura_view(request, id):
+    licenciatura=Licenciatura.objects.get(id=id)       
+    return render(request, 'portifolio/licenciatura.html', {'licenciatura': licenciatura})
+
+def docente_view(request, id):
+    docente = Docente.objects.get(id=id)
+    return render(request, 'portifolio/docente.html', {'docente': docente})
