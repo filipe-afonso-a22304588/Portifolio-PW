@@ -1,0 +1,35 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>Ucs</h2>
+<section>
+    {% for uc in ucs %}
+    <article>
+
+        <header>
+            <h3>{{ uc.nome }}</h3>
+        </header>
+
+        <section>
+            <h4>Professores:</h4>
+            {% for docente in uc.docentes.all %}
+            <ul>{{docente}}</ul>
+            {% empty %}
+            <a>Sem professores atribuidos</a>
+            {%endfor%}
+        </section>
+
+        <section>
+            <h4>{{uc.ano_curricular}}º ano {{uc.semestre}} semestre</h4>
+        </section>
+
+        <section>
+            <h4>Projeto final: 
+                <a>{{uc.projeto_final}}</a>
+            </h4>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}

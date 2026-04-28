@@ -1,0 +1,40 @@
+<!-- templates/escola/base.html -->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portifolio</title>
+    <!-- link para ficheiro styles.css com regras de estilização -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portifolio/styles.css' %}">
+
+    <!-- ... -->
+
+</head>
+
+<body>
+    <header>
+        <h1>Porifolio</h1>
+        <nav>
+            <a >Formação academica</a>
+            <a >Projetos</a>
+            <a >Experiência profissional</a>
+            
+        </nav>
+    </header>
+
+
+    <main>
+        {% block content %}
+        <!-- Conteúdo dinâmico -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026</p>
+    </footer>
+
+</body>
+</html>
