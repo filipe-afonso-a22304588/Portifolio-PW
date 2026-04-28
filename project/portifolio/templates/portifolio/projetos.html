@@ -1,0 +1,50 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>Projetos</h2>
+<section>
+    {% for projeto in projetos %}
+    <article>
+
+        <header>
+            <h3>{{ projeto.titulo }}</h3>
+        </header>
+
+        <section>
+            <h4>Professores avaliadores:</h4>
+            
+            {% for docente in projeto.docentes.all %}
+            <ul>
+                <a>{{docente}}</a>
+            </ul>
+            {% empty %}
+            <a>Sem professores atribuidos</a>
+            {%endfor%}
+        </section>
+
+        <section>
+            <h4>Descricao:</h4>
+                <p>{{projeto.descricao}}</p>
+        </section>
+
+        <section>
+            <h4>nota final:</h4>
+            <p> {{projeto.nota_final}}</p>
+        </section>
+
+        <section>
+            <h4>tecnologias:</h4>
+            <ul>
+            {%for tecnologia in projeto.tecnologias_usadas.all%}
+            <li>
+                {{tecnologia}}
+            </li>
+            
+            {%endfor%}
+            </ul>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}

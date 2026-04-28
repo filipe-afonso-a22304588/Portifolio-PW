@@ -3,8 +3,19 @@
 from django.shortcuts import render
 from .models import Docente,Competencia,Empresa,Formacao,TFC,Tecnologia,UC,Projeto,Licenciatura,MakingOF
 
-def uc_view(request):
+def ucs_view(request):
 
     ucs = UC.objects.all()
     
-    return render(request, 'portifolio/uc.html', {'ucs': ucs})
+    return render(request, 'portifolio/ucs.html', {'ucs': ucs})
+
+
+def projetos_view(request):
+
+    projetos = Projeto.objects.all()
+    
+    return render(request, 'portifolio/projetos.html', {'projetos': projetos})
+
+def projeto_view(request, id):
+    projeto=Projeto.objects.get(id=id)       
+    return render(request, 'portifolio/projeto.html', {'projeto': projeto})
