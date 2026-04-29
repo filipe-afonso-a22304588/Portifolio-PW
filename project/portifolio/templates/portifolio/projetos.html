@@ -15,7 +15,7 @@
             
             {% for docente in projeto.docentes.all %}
             <ul>
-                <a>{{docente}}</a>
+                <a href="{% url 'docente' docente.id %}">{{docente}}</a>
             </ul>
             {% empty %}
             <a>Sem professores atribuidos</a>

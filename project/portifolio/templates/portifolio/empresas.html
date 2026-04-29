@@ -1,0 +1,32 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>Experiências profissionais</h2>
+<section>
+    {% for emprego in empresas %}
+    <article>
+        <h3>{{emprego.nome}}</h3>
+        <section>
+            <ul>
+                <ol>
+                    <p>Inicio de contrato: {{ emprego.data_comeco }}</p>
+                    <p>Fim de contrato: {{ emprego.data_saida }}</p>
+                </ol>
+            </ul>
+        </section>
+        <section>
+            <ul>
+                {% if emprego.competencias.all %}
+                {% for competencia in emprego.competencias.all %}
+                <li>{{ competencia }}</li>
+                {% endfor %}
+                {% else %}
+                <p>Sem nenhuma competência atribuída</p>
+                {% endif %}
+            </ul>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}

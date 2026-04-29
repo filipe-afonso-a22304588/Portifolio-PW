@@ -1,5 +1,4 @@
-/* escola/static/escola/styles.css   */
-
+/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,31 +8,50 @@
 /* BODY */
 body {
     font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-    background: #e6ebf2;
+    background: linear-gradient(135deg, #e6ebf2, #f8fafc);
     color: #111827;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-/* HEADER PRINCIPAL DO WEBSITE (de base.html) */
+/* HEADER */
 body > header {
-    background: #1f2937;
+    background: linear-gradient(90deg, #1f2937, #111827);
     color: white;
     padding: 20px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 body > header h1 {
-    font-size: 26px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 body > header nav {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 body > header nav a {
-    color: #d1d5db;
+    color: #9ca3af;
     margin-right: 20px;
     text-decoration: none;
     font-weight: 500;
+    position: relative;
+}
+
+/* underline animado */
+body > header nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #60a5fa;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+body > header nav a:hover::after {
+    width: 100%;
 }
 
 body > header nav a:hover {
@@ -43,62 +61,65 @@ body > header nav a:hover {
 /* MAIN */
 main {
     max-width: 1100px;
-    margin: 40px auto;
+    margin: 50px auto;
     padding: 0 20px;
 }
 
-/* TÍTULO DA PÁGINA */
+/* TITULO */
 h2 {
-    margin-bottom: 20px;
-    font-size: 26px;
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
 }
 
-/* GRID DE CURSOS */
+/* GRID */
+section {
+    display: grid;
+    gap: 20px;
+}
+
+/* CARD */
 section > article {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #d1d5db;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transition: all 0.25s ease;
-    margin-bottom: 20px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
 }
 
 section > article:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.18);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 }
 
 /* HEADER DO CARD */
-article > header {
-    margin-bottom: 12px;
-}
-
-article > header > h3 {
-    font-size: 20px;
+article > header h3 {
+    font-size: 22px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
-article > header > p {
+article > header p {
     font-size: 14px;
-    color: #374151;
+    color: #6b7280;
 }
 
-/* SEÇÃO DO CARD */
+/* SEÇÕES */
 article > section {
-    margin-top: 10px;
+    margin-top: 14px;
 }
 
 article > section > h4 {
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
-    color: #6b7280;
+    color: #9ca3af;
     margin-bottom: 8px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
-/* LISTA DE ELEMENTOS do CARD */
+/* LISTA */
 article > section > ul {
     list-style: none;
     display: flex;
@@ -106,21 +127,38 @@ article > section > ul {
     gap: 8px;
 }
 
-/* ITEM */
+/* BADGES (melhoradas) */
 article > section > ul > li {
-    background: #2563eb;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border-radius: 999px;
     font-size: 13px;
     font-weight: 500;
+    transition: 0.2s;
+}
+
+article > section > ul > li:hover {
+    transform: scale(1.05);
+}
+
+/* LINKS */
+a {
+    color: #000278;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 25px;
-    background: #1f2937;
+    padding: 30px;
+    background: #111827;
     color: #9ca3af;
-    margin-top: 40px;
+    margin-top: 50px;
+    font-size: 14px;
 }

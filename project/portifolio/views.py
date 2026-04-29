@@ -36,3 +36,8 @@ def licenciatura_view(request, id):
 def docente_view(request, id):
     docente = Docente.objects.get(id=id)
     return render(request, 'portifolio/docente.html', {'docente': docente})
+
+def empresas_view(request):
+
+    empresas = Empresa.objects.all()
+    return render(request, 'portifolio/empresas.html', {'empresas': empresas})
