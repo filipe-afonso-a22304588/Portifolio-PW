@@ -41,3 +41,8 @@ def empresas_view(request):
 
     empresas = Empresa.objects.all()
     return render(request, 'portifolio/empresas.html', {'empresas': empresas})
+
+def tfcs_view(request):
+
+    tfcs = TFC.objects.all()
+    return render(request, 'portifolio/tfcs.html', {'tfcs': tfcs})

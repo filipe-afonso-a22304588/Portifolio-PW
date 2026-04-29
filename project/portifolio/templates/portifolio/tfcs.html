@@ -1,0 +1,43 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>TFCs</h2>
+<section>
+    {% for tfc in tfcs %}
+    <article>
+        <h3>{{tfc.titulo}}</h3>
+        <section>
+            <ul>
+            <h4>Autor:</h4>
+            <p>{{ tfc.autor }}</p>
+            </ul>
+        </section>
+        <section>
+            <ul>
+            <h4>docente responsavel:</h4>
+            <p>{{ tfc.docente_responsavel }}</p>
+            </ul>
+        </section>
+        <section>
+            <ul>
+                <h4>Tecnologias:</h4>
+                {% if tfc.tecnologias_usadas.all %}
+                {% for tecnologia in tfc.tecnologias_usadas.all %}
+                <li>{{ tecnologia }}</li>
+                {% endfor %}
+                {% else %}
+                <p>Sem nenhuma tecnologia atribuída</p>
+                {% endif %}
+            </ul>
+        </section>
+        <section>
+            <ul>
+            <h4>Resumo</h4>
+            <p>{{ tfc.resumo }}</p>
+            </ul>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}
