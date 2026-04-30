@@ -10,7 +10,7 @@
     <article>
 
         <header>
-            <h3>{{ projeto.titulo }}</h3>
+            <h3><a href="{% url 'projeto' projeto.id %}">{{ projeto.titulo }}</a></h3>
         </header>
 
         <section>

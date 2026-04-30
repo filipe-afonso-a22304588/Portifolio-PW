@@ -4,10 +4,12 @@
 <h2>Projeto {{projeto}}</h2>
 <section>
     <article>
-
+        <a href="{% url 'edita_projeto' projeto.id %}">
+            <button>Editar informação deste projeto</button>
+        </a>
         <section>
             <h3>Professores avaliadores:</h3>
-            
+
             {% for docente in projeto.docentes.all %}
             <ul>
                 <a href="{% url 'docente' docente.id %}">{{docente}}</a>
@@ -19,7 +21,7 @@
 
         <section>
             <h4>Descricao:</h4>
-                <p>{{projeto.descricao}}</p>
+            <p>{{projeto.descricao}}</p>
         </section>
 
         <section>
@@ -30,12 +32,12 @@
         <section>
             <h4>tecnologias:</h4>
             <ul>
-            {%for tecnologia in projeto.tecnologias_usadas.all%}
-            <li>
-                {{tecnologia}}
-            </li>
-            
-            {%endfor%}
+                {%for tecnologia in projeto.tecnologias_usadas.all%}
+                <li>
+                    {{tecnologia}}
+                </li>
+
+                {%endfor%}
             </ul>
         </section>
 

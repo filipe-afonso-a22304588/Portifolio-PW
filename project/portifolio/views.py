@@ -60,3 +60,17 @@ def novo_projeto_view(request):
     
     context = {'form': form}
     return render(request, 'portifolio/novo_projeto.html', context)
+
+def edita_projeto_view(request, projeto_id):
+    projeto = Projeto.objects.get(id=projeto_id)
+    
+    if request.POST:
+        form = ProjetoForm(request.POST or None, request.FILES, instance=projeto)
+        if form.is_valid():
+            form.save()
+            return redirect('projeto', id=projeto_id)
+    else:
+        form = ProjetoForm(instance=projeto)
+        
+    context = {'form': form, 'projeto':projeto}
+    return render(request, 'portifolio/edita_projeto.html', context)
