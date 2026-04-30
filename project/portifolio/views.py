@@ -1,7 +1,8 @@
 ##  ficheiro escola/views.py
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Docente,Competencia,Empresa,Formacao,TFC,Tecnologia,UC,Projeto,Licenciatura,MakingOF
+from .forms import ProjetoForm
 
 def ucs_view(request):
 
@@ -46,3 +47,16 @@ def tfcs_view(request):
 
     tfcs = TFC.objects.all()
     return render(request, 'portifolio/tfcs.html', {'tfcs': tfcs})
+
+def novo_projeto_view(request):
+
+     # criar instância de formulário.
+    # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
+    # Senão, o form não tem dados e não é válido
+    form = ProjetoForm(request.POST or None, request.FILES)  # request.FILES deve ser incluido se forem enviados ficheiros ou imagens
+    if form.is_valid():
+        form.save()
+        return redirect('projetos')
+    
+    context = {'form': form}
+    return render(request, 'portifolio/novo_projeto.html', context)
