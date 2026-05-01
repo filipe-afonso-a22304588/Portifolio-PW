@@ -100,6 +100,7 @@ def nova_tecnologia_view(request):
     return render(request, 'portifolio/nova_tecnologia.html', context)
 
 def edita_tecnologia_view(request, tecnologia_id):
+
     tecnologia = Tecnologia.objects.get(id=tecnologia_id)
     
     if request.POST:
@@ -112,3 +113,8 @@ def edita_tecnologia_view(request, tecnologia_id):
         
     context = {'form': form, 'tecnologia':tecnologia}
     return render(request, 'portifolio/editar_tecnologia.html', context)
+
+def apaga_tecnologia_view(request, tecnologia_id):
+    tecnologia = Tecnologia.objects.get(id=tecnologia_id)
+    tecnologia.delete()
+    return redirect('projetos')
