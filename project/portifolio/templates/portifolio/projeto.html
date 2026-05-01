@@ -37,9 +37,8 @@
             <ul>
                 {%for tecnologia in projeto.tecnologias_usadas.all%}
                 <li>
-                    {{tecnologia}}
+                    <a href="{% url 'tecnologia' tecnologia.id %}">{{tecnologia}}</a>
                 </li>
-
                 {%endfor%}
             </ul>
         </section>

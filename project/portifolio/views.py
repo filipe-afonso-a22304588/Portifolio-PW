@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Docente,Competencia,Empresa,Formacao,TFC,Tecnologia,UC,Projeto,Licenciatura,MakingOF
-from .forms import ProjetoForm
+from .forms import ProjetoForm, TecnologiaForm
 
 def ucs_view(request):
 
@@ -79,3 +79,23 @@ def apaga_projeto_view(request, projeto_id):
     projeto = Projeto.objects.get(id=projeto_id)
     projeto.delete()
     return redirect('projetos')
+
+def tecnologias_view(request):
+
+    tecnologias = Tecnologia.objects.all()
+    
+    return render(request, 'portifolio/tecnologias.html', {'tecnologias': tecnologias})
+
+def tecnologia_view(request, id):
+    tecnologia = Tecnologia.objects.get(id=id)
+    return render(request, 'portifolio/tecnologia.html', {'tecnologia': tecnologia})
+
+def nova_tecnologia_view(request):
+    
+    form = TecnologiaForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect('projetos')
+    
+    context = {'form': form}
+    return render(request, 'portifolio/nova_tecnologia.html', context)

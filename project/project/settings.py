@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "portifolio",
     "escola",
+    "django_select2"
 ]
 
 MIDDLEWARE = [
