@@ -18,4 +18,6 @@ urlpatterns = [
    path("tecnologias/", views.tecnologias_view, name='tecnologias'),
    path("tecnologia/<int:id>/", views.tecnologia_view, name='tecnologia'),
    path('tecnologias/novo', views.nova_tecnologia_view, name="nova_tecnologia"),
+   path('tecnologia/<int:tecnologia_id>/edita', views.edita_tecnologia_view,name="edita_tecnologia"),
+
 ]

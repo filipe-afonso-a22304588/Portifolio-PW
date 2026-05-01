@@ -14,7 +14,6 @@ def uc_view(request, id):
     uc = UC.objects.get(id=id)
     return render(request, 'portifolio/uc.html', {'uc': uc})
 
-
 def projetos_view(request):
 
     projetos = Projeto.objects.all()
@@ -99,3 +98,17 @@ def nova_tecnologia_view(request):
     
     context = {'form': form}
     return render(request, 'portifolio/nova_tecnologia.html', context)
+
+def edita_tecnologia_view(request, tecnologia_id):
+    tecnologia = Tecnologia.objects.get(id=tecnologia_id)
+    
+    if request.POST:
+        form = TecnologiaForm(request.POST or None, request.FILES, instance=tecnologia)
+        if form.is_valid():
+            form.save()
+            return redirect('tecnologia', id=tecnologia_id)
+    else:
+        form = TecnologiaForm(instance=tecnologia)
+        
+    context = {'form': form, 'tecnologia':tecnologia}
+    return render(request, 'portifolio/editar_tecnologia.html', context)
