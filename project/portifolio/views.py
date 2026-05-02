@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Docente,Competencia,Empresa,Formacao,TFC,Tecnologia,UC,Projeto,Licenciatura,MakingOF
-from .forms import ProjetoForm, TecnologiaForm, CompetenciaForm
+from .forms import ProjetoForm, TecnologiaForm, CompetenciaForm, FormacaoForm
 
 def ucs_view(request):
 
@@ -158,3 +158,42 @@ def nova_competencia_view(request):
     
     context = {'form': form}
     return render(request, 'portifolio/nova_competencia.html', context)
+
+def formacoes_view(request):
+
+    formacoes = Formacao.objects.all()
+    return render(request, 'portifolio/formacoes.html', {'formacoes': formacoes})
+
+def formacao_view(request, id):
+    formacao = Formacao.objects.get(id=id)
+    return render(request, 'portifolio/formacao.html', {'formacao': formacao})
+
+def nova_formacao_view(request):
+    
+    form = FormacaoForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect('formacoes')
+    
+    context = {'form': form}
+    return render(request, 'portifolio/nova_formacao.html', context)
+
+def edita_formacao_view(request, formacao_id):
+
+    formacao = Formacao.objects.get(id=formacao_id)
+    
+    if request.POST:
+        form = FormacaoForm(request.POST or None, request.FILES, instance=formacao)
+        if form.is_valid():
+            form.save()
+            return redirect('formacao', id=formacao_id)
+    else:
+        form = FormacaoForm(instance=formacao)
+        
+    context = {'form': form, 'formacao':formacao}
+    return render(request, 'portifolio/editar_formacao.html', context)
+
+def apaga_formacao_view(request, formacao_id):
+    formacao = Formacao.objects.get(id=formacao_id)
+    formacao.delete()
+    return redirect('formacoes')

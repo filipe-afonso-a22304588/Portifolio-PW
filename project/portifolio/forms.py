@@ -23,3 +23,8 @@ class CompetenciaForm(forms.ModelForm):
   class Meta:
     model = Competencia   
     fields = '__all__'
+
+class FormacaoForm(forms.ModelForm):
+  class Meta:
+    model = Formacao   
+    fields = '__all__'

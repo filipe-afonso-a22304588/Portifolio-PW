@@ -25,5 +25,10 @@ urlpatterns = [
    path('competencia/<int:competencia_id>/edita', views.edita_competencia_view,name="edita_competencia"),
    path('competencia/<int:competencia_id>/apaga', views.apaga_competencia_view,name="apaga_competencia"),
    path('competencia/nova', views.nova_competencia_view, name="nova_competencia"),
+   path("formacoes/", views.formacoes_view, name='formacoes'),
+   path("formacao/<int:id>/", views.formacao_view, name='formacao'),
+   path('formacao/nova', views.nova_formacao_view, name="nova_formacao"),
+   path('formacao/<int:formacao_id>/edita', views.edita_formacao_view,name="edita_formacao"),
+   path('formacao/<int:formacao_id>/apaga', views.apaga_formacao_view,name="apaga_formacao"),
 
 ]

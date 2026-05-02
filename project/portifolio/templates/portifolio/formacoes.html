@@ -1,0 +1,28 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>Formações</h2>
+<section>
+        <a href="{% url 'nova_formacao' %}">
+            <button>Inserir nova formação</button>
+        </a>
+    {% for formacao in formacoes %}
+    <article>
+        <header>
+            <h3><a href="{% url 'formacao' formacao.id %}">{{ formacao.titulo }}</a></h3>
+        </header>
+
+        <section>
+            <h4>Data de formação:</h4>
+            <p>{{formacao.data}}</p>
+        </section>
+
+         <section>
+            <h4>Resumo:</h4>
+            <p>{{formacao.resumo}}</p>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}
