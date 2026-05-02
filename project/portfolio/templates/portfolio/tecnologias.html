@@ -1,0 +1,46 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Tecnolgias</h2>
+    <a href="{% url 'nova_tecnologia' %}">
+        <button>Inserir novo tecnologia</button>
+    </a>
+    {% for tecnologia in tecnologias %}
+    <article>
+
+        <header>
+            <h3>{{ tecnologia.nome }}</h3>
+        </header>
+
+        <section>
+            <p> {{tecnologia.logo}}</p>
+        </section>
+
+        <section>
+            <h4>Docentes associados:</h4>
+
+            {% for docente in tecnologia.docentes.all %}
+            <ul>
+                <a href="{% url 'docente' docente.id %}">{{docente}}</a>
+            </ul>
+            {% empty %}
+            <a>Sem professores atribuidos</a>
+            {%endfor%}
+        </section>
+
+        <section>
+            <h4>Descricao:</h4>
+            <p>{{tecnologia.descricao}}</p>
+        </section>
+
+        <section>
+            <h4>Usos populares de {{tecnologia.nome}}:</h4>
+
+            <a>{{tecnologia.exemplos_uso}}</a>
+            {% empty %}
+            <a>Sem professores atribuidos</a>
+        </section>
+
+    </article>
+    {%endfor%}
+{% endblock %}

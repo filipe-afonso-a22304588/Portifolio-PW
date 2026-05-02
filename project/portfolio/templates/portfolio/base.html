@@ -1,0 +1,42 @@
+<!-- templates/escola/base.html -->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!-- link para ficheiro styles.css com regras de estilização -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+
+    <!-- ... -->
+
+</head>
+
+<body>
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <a href="{% url 'licenciaturas' %}">Formação academica</a>
+            <a href="{% url 'projetos' %}">Projetos desenvolvidos</a>
+            <a href="{% url 'empresas' %}">Experiência profissional</a>
+            <a href="{% url 'formacoes' %}">Formações</a>
+            <a href="{% url 'tfcs' %}">TFCs PW</a>
+            
+        </nav>
+    </header>
+
+
+    <main>
+        {% block content %}
+        <!-- Conteúdo dinâmico -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026</p>
+    </footer>
+
+</body>
+</html>

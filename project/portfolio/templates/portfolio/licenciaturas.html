@@ -1,0 +1,17 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Licenciaturas</h2>
+<section>
+    {% for licen in licenciaturas %}
+    <article>
+            <section>
+            <ul>
+            <a href="{% url 'licenciatura' licen.id %}">{{ licen.nome }}</a>
+            </ul>
+            </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}

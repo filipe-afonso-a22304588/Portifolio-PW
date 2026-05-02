@@ -1,0 +1,270 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY */
+body {
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #e6ebf2, #f8fafc);
+    color: #111827;
+    line-height: 1.6;
+}
+
+/* HEADER */
+body > header {
+    background: linear-gradient(90deg, #1f2937, #111827);
+    color: white;
+    padding: 20px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+body > header h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+body > header nav {
+    margin-top: 12px;
+}
+
+body > header nav a {
+    color: #9ca3af;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+/* underline animado */
+body > header nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #60a5fa;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+body > header nav a:hover::after {
+    width: 100%;
+}
+
+body > header nav a:hover {
+    color: white;
+}
+
+/* MAIN */
+main {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* TITULO */
+h2 {
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* GRID */
+section {
+    display: grid;
+    gap: 20px;
+}
+
+/* CARD */
+section > article {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+section > article:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+}
+
+/* HEADER DO CARD */
+article > header h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+article > header p {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* SEÇÕES */
+article > section {
+    margin-top: 14px;
+}
+
+article > section > h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+}
+
+/* LISTA */
+article > section > ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* BADGES (melhoradas) */
+article > section > ul > li {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+article > section > ul > li:hover {
+    transform: scale(1.05);
+}
+
+/* LINKS */
+a {
+    color: #000278;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #111827;
+    color: #9ca3af;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+/* ========================= */
+/* FORMULÁRIOS */
+/* ========================= */
+
+form {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    max-width: 600px;
+}
+
+/* GRUPO DE CAMPO */
+form div {
+    margin-bottom: 16px;
+}
+
+/* LABEL */
+form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+/* INPUTS */
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    font-family: inherit;
+    transition: 0.2s;
+    background: white;
+}
+
+/* FOCUS */
+form input:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* TEXTAREA */
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* CHECKBOX / RADIO */
+form input[type="checkbox"],
+form input[type="radio"] {
+    width: auto;
+    margin-right: 6px;
+}
+
+/* BOTÃO */
+button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* HOVER BOTÃO */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* BOTÃO SECUNDÁRIO */
+form .btn-secondary {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+/* ERROS */
+.errorlist {
+    list-style: none;
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* HELP TEXT */
+.helptext {
+    font-size: 12px;
+    color: #6b7280;
+}
+.errorlist {
+    display:none;
+}
