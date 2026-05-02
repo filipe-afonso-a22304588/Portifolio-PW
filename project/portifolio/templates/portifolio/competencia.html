@@ -1,0 +1,23 @@
+{% extends "portifolio/base.html" %}
+
+{% block content %}
+<h2>{{competencia.titulo}}</h2>
+<section>
+    <ul>
+        <a href="{% url 'edita_competencia' competencia.id %}">
+            <button>Editar Competencia</button>
+        </a>
+        <a href="{% url 'apaga_competencia' competencia.id %}">
+            <button>Apagar Competencia</button>
+        </a>
+    </ul>
+    <article>
+
+        <section>
+            <h4>Descricao:</h4>
+            <p>{{competencia.resumo_basico}}</p>
+        </section>
+
+    </article>
+</section>
+{% endblock %}

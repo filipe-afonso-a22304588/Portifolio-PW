@@ -20,6 +20,10 @@ urlpatterns = [
    path('tecnologias/novo', views.nova_tecnologia_view, name="nova_tecnologia"),
    path('tecnologia/<int:tecnologia_id>/edita', views.edita_tecnologia_view,name="edita_tecnologia"),
    path('tecnologia/<int:tecnologia_id>/apaga', views.apaga_tecnologia_view,name="apaga_tecnologia"),
-
+   path("competencias/", views.competencias_view, name='competencias'),
+   path("competencia/<int:id>/", views.competencia_view, name='competencia'),
+   path('competencia/<int:competencia_id>/edita', views.edita_competencia_view,name="edita_competencia"),
+   path('competencia/<int:competencia_id>/apaga', views.apaga_competencia_view,name="apaga_competencia"),
+   path('competencia/nova', views.nova_competencia_view, name="nova_competencia"),
 
 ]

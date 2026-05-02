@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Docente,Competencia,Empresa,Formacao,TFC,Tecnologia,UC,Projeto,Licenciatura,MakingOF
-from .forms import ProjetoForm, TecnologiaForm
+from .forms import ProjetoForm, TecnologiaForm, CompetenciaForm
 
 def ucs_view(request):
 
@@ -118,3 +118,43 @@ def apaga_tecnologia_view(request, tecnologia_id):
     tecnologia = Tecnologia.objects.get(id=tecnologia_id)
     tecnologia.delete()
     return redirect('projetos')
+
+def competencias_view(request):
+    
+    competencias = Competencia.objects.all()
+    
+    return render(request, 'portifolio/competencias.html', {'competencias': competencias})
+
+def competencia_view(request, id):
+    competencia = Competencia.objects.get(id=id)
+    return render(request, 'portifolio/competencia.html', {'competencia': competencia})
+
+def edita_competencia_view(request, competencia_id):
+
+    competencia = Competencia.objects.get(id=competencia_id)
+    
+    if request.POST:
+        form = CompetenciaForm(request.POST or None, request.FILES, instance=competencia)
+        if form.is_valid():
+            form.save()
+            return redirect('competencia', id=competencia_id)
+    else:
+        form = CompetenciaForm(instance=competencia)
+        
+    context = {'form': form, 'competencia':competencia}
+    return render(request, 'portifolio/editar_competencia.html', context)
+
+def apaga_competencia_view(request, competencia_id):
+    competencia = Competencia.objects.get(id=competencia_id)
+    competencia.delete()
+    return redirect('competencias')
+
+def nova_competencia_view(request):
+    
+    form = CompetenciaForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect('competencias')
+    
+    context = {'form': form}
+    return render(request, 'portifolio/nova_competencia.html', context)
