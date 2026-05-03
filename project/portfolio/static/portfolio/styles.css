@@ -268,3 +268,7 @@ form .btn-secondary {
 .errorlist {
     display:none;
 }
+.img-diagrama {
+    max-width: 100%;
+    height: auto;
+}

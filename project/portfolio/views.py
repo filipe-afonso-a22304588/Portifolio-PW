@@ -194,6 +194,13 @@ def edita_formacao_view(request, formacao_id):
     return render(request, 'portfolio/editar_formacao.html', context)
 
 def apaga_formacao_view(request, formacao_id):
+
     formacao = Formacao.objects.get(id=formacao_id)
     formacao.delete()
     return redirect('formacoes')
+
+def info_view(request):
+
+    makingofs = MakingOF.objects.all()
+    
+    return render(request, 'portfolio/info.html', {'makingofs': makingofs})
