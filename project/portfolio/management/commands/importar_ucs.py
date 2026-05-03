@@ -2,7 +2,7 @@ import json
 import os
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from portifolio.models import UC
+from portfolio.models import UC
 
 class Command(BaseCommand):
     help = 'Importar UCs dos JSONs'

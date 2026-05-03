@@ -1,7 +1,7 @@
 #
 import json
 from django.core.management.base import BaseCommand
-from portifolio.models import Docente, TFC, Tecnologia
+from portfolio.models import Docente, TFC, Tecnologia
 
 class Command(BaseCommand):
     help = 'Importar TFCs do JSON'

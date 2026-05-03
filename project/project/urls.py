@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("portifolio.urls")),
+    path("", include("portfolio.urls")),
     path("escola/", include("escola.urls")),
-    path("portifolio/", include("portifolio.urls")),
+    path("portfolio/", include("portfolio.urls")),
     path('select2/', include('django_select2.urls')),
 ]
 
