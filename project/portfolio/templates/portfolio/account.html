@@ -1,0 +1,31 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Minha conta</h2>
+
+{% if user.is_authenticated %}
+
+<section>
+    <article>
+
+        <h4>Bem vindo, {{user.username}}</h4>
+
+        <a href="{% url 'logout' %}">
+            <button>Logout</button>
+        </a>
+    </article>
+</section>
+
+{% else %}
+<section>
+    <article>
+        <p>Faça login :D</p>
+        <a href="{% url 'login' %}">
+            <button>Login</button>
+        </a>
+    </article>
+</section>
+{%endif%}
+
+{%endblock%}

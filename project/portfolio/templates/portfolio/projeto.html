@@ -4,12 +4,15 @@
 <h2>Projeto {{projeto}}</h2>
 <section>
     <article>
+    {% if is_gestor %}
+
         <a href="{% url 'edita_projeto' projeto.id %}">
             <button>Editar informação deste projeto</button>
         </a>
         <a href="{% url 'apaga_projeto' projeto.id %}">
             <button>Apagar projeto</button>
         </a>
+        {%endif%}
         <section>
             <h3>Professores avaliadores:</h3>
 

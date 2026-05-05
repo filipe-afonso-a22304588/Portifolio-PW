@@ -3,9 +3,12 @@
 {% block content %}
 <h2>Formações</h2>
 <section>
+    {% if is_gestor %}
+
         <a href="{% url 'nova_formacao' %}">
             <button>Inserir nova formação</button>
         </a>
+        {%endif%}
     {% for formacao in formacoes %}
     <article>
         <header>

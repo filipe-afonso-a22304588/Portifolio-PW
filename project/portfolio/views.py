@@ -20,12 +20,13 @@ def uc_view(request, id):
 def projetos_view(request):
 
     projetos = Projeto.objects.all()
-    
-    return render(request, 'portfolio/projetos.html', {'projetos': projetos})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+    return render(request, 'portfolio/projetos.html', {'projetos': projetos, 'is_gestor': is_gestor})
 
 def projeto_view(request, id):
     projeto=Projeto.objects.get(id=id)       
-    return render(request, 'portfolio/projeto.html', {'projeto': projeto})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+    return render(request, 'portfolio/projeto.html', {'projeto': projeto, 'is_gestor': is_gestor})
 
 def licenciaturas_view(request):
 
@@ -90,7 +91,8 @@ def tecnologias_view(request):
 
 def tecnologia_view(request, id):
     tecnologia = Tecnologia.objects.get(id=id)
-    return render(request, 'portfolio/tecnologia.html', {'tecnologia': tecnologia})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+    return render(request, 'portfolio/tecnologia.html', {'tecnologia': tecnologia, 'is_gestor': is_gestor})
 
 def nova_tecnologia_view(request):
     
@@ -130,7 +132,8 @@ def competencias_view(request):
 
 def competencia_view(request, id):
     competencia = Competencia.objects.get(id=id)
-    return render(request, 'portfolio/competencia.html', {'competencia': competencia})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+    return render(request, 'portfolio/competencia.html', {'competencia': competencia, 'is_gestor': is_gestor})
 
 def edita_competencia_view(request, competencia_id):
 
@@ -165,11 +168,15 @@ def nova_competencia_view(request):
 def formacoes_view(request):
 
     formacoes = Formacao.objects.all()
-    return render(request, 'portfolio/formacoes.html', {'formacoes': formacoes})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+
+    return render(request, 'portfolio/formacoes.html', {'formacoes': formacoes, 'is_gestor': is_gestor})
 
 def formacao_view(request, id):
     formacao = Formacao.objects.get(id=id)
-    return render(request, 'portfolio/formacao.html', {'formacao': formacao})
+    is_gestor = request.user.groups.filter(name='gestor-portifolio').exists()
+
+    return render(request, 'portfolio/formacao.html', {'formacao': formacao, 'is_gestor': is_gestor})
 
 def nova_formacao_view(request):
     
@@ -236,3 +243,10 @@ def registo_view(request):
     context = {'form': form}
 
     return render(request, 'portfolio/registo.html', context)
+
+def account_view(request):
+    return render(request, 'portfolio/account.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('conta')

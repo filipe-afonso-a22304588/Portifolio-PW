@@ -3,6 +3,7 @@
 {% block content %}
 <h2>{{competencia.titulo}}</h2>
 <section>
+    {% if is_gestor %}
     <ul>
         <a href="{% url 'edita_competencia' competencia.id %}">
             <button>Editar Competencia</button>
@@ -11,6 +12,7 @@
             <button>Apagar Competencia</button>
         </a>
     </ul>
+    {% endif %}
     <article>
 
         <section>

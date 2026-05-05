@@ -4,17 +4,21 @@
 <h2>Formações {{formacao}}</h2>
 <section>
     <article>
+        {% if is_gestor %}
+
         <header>
             <a href="{% url 'edita_formacao' formacao.id %}"><button>Editar formação</button></a>
             <a href="{% url 'apaga_formacao' formacao.id %}"><button>Apagar formação</button></a>
         </header>
+        {%endif%}
+
 
         <section>
             <h4>Data de formação:</h4>
             <p>{{formacao.data}}</p>
         </section>
 
-         <section>
+        <section>
             <h4>Resumo:</h4>
             <p>{{formacao.resumo}}</p>
         </section>
