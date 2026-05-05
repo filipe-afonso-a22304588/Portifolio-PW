@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "portfolio",
     "escola",
     "django_select2"
+    "artigos"
 ]
 
 MIDDLEWARE = [
