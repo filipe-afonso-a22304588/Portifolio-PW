@@ -250,3 +250,16 @@ def account_view(request):
 def logout_view(request):
     logout(request)
     return redirect('conta')
+
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+
+        if default_token_generator.check_token(user, token):
+            login(request, user)
+            return redirect('ucs')  # ou homepage
+
+    except:
+        pass
+
+    return render(request, "erro.html")
