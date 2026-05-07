@@ -1,0 +1,35 @@
+{% extends "artigos/base.html" %}
+
+{% block content %}
+<h2>Artigos</h2>
+<section>
+        <a href="">
+            <button>Inserir novo Artigo</button>
+        </a>
+    {% for artigo in artigos %}
+    <article>
+        <header>
+            <h3><a href="">{{ artigo.texto }}</a></h3>
+        </header>
+
+        <section>
+            <image src="project/media/media/abc.png">{{artigo.fotografia}}</image>
+        </section>
+
+        <section>
+            <p>{{artigo.data_criacao}}</p>
+        </section>
+
+        <section>
+            <p>{{artigo.link}}</p>
+        </section>
+
+        
+        <section>
+            <p>{{artigo.autor}}</p>
+        </section>
+
+    </article>
+    {%endfor%}
+</section>
+{% endblock %}

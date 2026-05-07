@@ -1,0 +1,42 @@
+{% extends "artigos/base.html" %}
+
+{% block content %}
+
+<h2>Minha conta</h2>
+
+{% if user.is_authenticated %}
+
+<section>
+    <article>
+
+        <h4>Bem vindo, {{user.username}}</h4>
+
+        <a href="{% url 'logout' %}">
+            <button>Logout</button>
+        </a>
+    </article>
+</section>
+
+{% else %}
+<section>
+    <h4>Faça login :D</h4>
+    <article>
+        <p>Uso uma conta na plataforma</p>
+        <a href="{% url 'login' %}">
+            <button>Login</button>
+        </a>
+        <p>Ou link mágico</p>
+    </article>
+</section>
+
+<section>
+    <h4>Se não tiveres conta regista-te :D</h4>
+    <article>
+        <a href="{% url 'registo' %}">
+            <button>Registo</button>
+        </a>
+    </article>
+</section>
+{%endif%}
+
+{%endblock%}
