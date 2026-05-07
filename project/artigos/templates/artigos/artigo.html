@@ -1,18 +1,17 @@
 {% extends "artigos/base.html" %}
 
 {% block content %}
-<h2>Artigos</h2>
-    {% for artigo in artigos %}
+<h2>{{artigo.texto}}</h2>
 <section>
     {% if is_autor %}
         <a href="">
-            <button>Inserir novo Artigo</button>
+            <button>Editar Artigo</button>
+        </a>
+        <a href="">
+            <button>Apagar Artigo</button>
         </a>
     {%endif%}
     <article>
-        <header>
-            <h3><a href="{% url 'artigo' artigo.id %}">{{ artigo.texto }}</a></h3>
-        </header>
 
         <section>
             <image src="project/media/media/abc.png">{{artigo.fotografia}}</image>
@@ -32,6 +31,5 @@
         </section>
 
     </article>
-    {%endfor%}
 </section>
 {% endblock %}
