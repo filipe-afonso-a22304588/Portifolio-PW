@@ -8,6 +8,9 @@ urlpatterns = [
    path("conta/", views.account_view, name='conta'),
    path("logout/", views.logout_view, name='logout'),
    path("artigo/<int:id>/", views.artigo_view, name='artigo'),
+   path('artigo/<int:artigo_id>/edita', views.edita_artigo_view,name="edita_artigo"),
+   path('artigo/<int:artigo_id>/apaga', views.apaga_artigo_view,name="apaga_artigo"),
+   path('artigo/novo', views.novo_artigo_view, name="novo_artigo"),
 
 
 ]

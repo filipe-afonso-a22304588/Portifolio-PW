@@ -4,10 +4,10 @@
 <h2>{{artigo.texto}}</h2>
 <section>
     {% if is_autor %}
-        <a href="">
+        <a href="{% url 'edita_artigo' artigo.id %}">
             <button>Editar Artigo</button>
         </a>
-        <a href="">
+        <a href="{% url 'apaga_artigo' artigo.id %}">
             <button>Apagar Artigo</button>
         </a>
     {%endif%}

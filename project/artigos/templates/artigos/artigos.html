@@ -4,8 +4,8 @@
 <h2>Artigos</h2>
     {% for artigo in artigos %}
 <section>
-    {% if is_autor %}
-        <a href="">
+    {% if is_gestor %}
+        <a href="{% url 'novo_artigo'%}">
             <button>Inserir novo Artigo</button>
         </a>
     {%endif%}
