@@ -1,7 +1,7 @@
 from django import forms   
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Artigo
+from .models import Artigo, Comentario
 
 class RegistoForm(UserCreationForm):
   email = forms.EmailField(required=True)
@@ -16,3 +16,9 @@ class ArtigoForm(forms.ModelForm):
   class Meta:
     model = Artigo   
     fields = '__all__'
+
+class ComentarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Comentario
+        fields = ['texto']

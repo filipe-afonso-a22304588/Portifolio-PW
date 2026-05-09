@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .models import Artigo
-from .forms import RegistoForm, ArtigoForm
+from .forms import RegistoForm, ArtigoForm, ComentarioForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 def artigos_view(request):
 
@@ -11,7 +12,6 @@ def artigos_view(request):
     is_gestor = request.user.groups.filter(name='autores').exists()
     
     return render(request, 'artigos/artigos.html', {'artigos': artigos, 'is_gestor': is_gestor})
-
 
 def artigo_view(request, id):
     artigo = Artigo.objects.get(id=id)
@@ -91,7 +91,6 @@ def apaga_artigo_view(request, artigo_id):
     artigo.delete()
     return redirect('artigos')
 
-
 def novo_artigo_view(request):
     
     form = ArtigoForm(request.POST or None, request.FILES)
@@ -101,3 +100,35 @@ def novo_artigo_view(request):
     
     context = {'form': form}
     return render(request, 'artigos/novo_artigo.html', context)
+
+@login_required
+def like_artigo(request, id):
+
+    artigo = Artigo.objects.get(id=id)
+
+    if request.user in artigo.likes.all():
+        artigo.likes.remove(request.user)
+    else:
+        artigo.likes.add(request.user)
+
+    return redirect('artigo', id=id)
+
+@login_required
+def adicionar_comentario(request, id):
+
+    artigo = Artigo.objects.get(id=id)
+
+    if request.method == "POST":
+
+        form = ComentarioForm(request.POST)
+
+        if form.is_valid():
+
+            comentario = form.save(commit=False)
+
+            comentario.artigo = artigo
+            comentario.autor = request.user
+
+            comentario.save()
+
+    return redirect('artigo', id=id)
