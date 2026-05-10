@@ -42,11 +42,11 @@ class Formacao (models.Model):
         return self.titulo
     
 class TFC (models.Model):
-    titulo = models.CharField(max_length=100, null=False, blank=False)
-    autor = models.CharField(max_length=100, null=False, blank=False)
+    titulo = models.CharField(max_length=500, null=False, blank=False)
+    autor = models.CharField(max_length=200, null=False, blank=False)
     docente_responsavel = models.CharField(blank= True)
-    tecnologias_usadas = models.CharField(max_length=100, null=False, blank=False)
-    resumo = models.CharField(max_length=500, blank=True)
+    tecnologias_usadas = models.CharField(max_length=500, null=False, blank=False)
+    resumo = models.CharField(max_length=10000, blank=True)
     video_imagem = models.URLField(blank=True)
     interesse = models.DecimalField(max_digits=2, decimal_places=1, null= False, blank=False)
     
