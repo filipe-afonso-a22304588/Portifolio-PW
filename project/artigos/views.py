@@ -31,7 +31,9 @@ def login_view(request):
             login(request,user)
             return redirect('artigos')
         else:
-            return render(request, 'artigos/login.html', {'erro: Credenciais inválidas'})
+            return render(request, 'artigos/login.html', {
+    'erro': 'Credenciais inválidas'
+})
 
     return render(request, 'artigos/login.html')
 

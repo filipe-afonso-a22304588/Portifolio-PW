@@ -11,7 +11,7 @@
 
         <h4>Bem vindo, {{user.username}}</h4>
 
-        <a href="{% url 'logout' %}">
+        <a href="{% url 'logout_artigo' %}">
             <button>Logout</button>
         </a>
     </article>
@@ -22,7 +22,7 @@
     <h4>Faça login :D</h4>
     <article>
         <p>Uso uma conta na plataforma</p>
-        <a href="{% url 'login' %}">
+        <a href="{% url 'login_artigo' %}">
             <button>Login</button>
         </a>
         <p>Ou link mágico</p>
@@ -32,7 +32,7 @@
 <section>
     <h4>Se não tiveres conta regista-te :D</h4>
     <article>
-        <a href="{% url 'registo' %}">
+        <a href="{% url 'registo_artigo' %}">
             <button>Registo</button>
         </a>
     </article>

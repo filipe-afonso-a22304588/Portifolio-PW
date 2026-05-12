@@ -3,10 +3,10 @@ from . import views
 
 urlpatterns = [
    path("artigos/", views.artigos_view, name='artigos'),
-   path("login/", views.login_view, name='login'),
-   path("registo/", views.registo_view, name='registo'),
-   path("conta/", views.account_view, name='conta'),
-   path("logout/", views.logout_view, name='logout'),
+   path("login/", views.login_view, name='login_artigo'),
+   path("registo/", views.registo_view, name='registo_artigo'),
+   path("conta/", views.account_view, name='conta_artigo'),
+   path("logout/", views.logout_view, name='logout_artigo'),
    path("artigo/<int:id>/", views.artigo_view, name='artigo'),
    path('artigo/<int:artigo_id>/edita', views.edita_artigo_view,name="edita_artigo"),
    path('artigo/<int:artigo_id>/apaga', views.apaga_artigo_view,name="apaga_artigo"),
